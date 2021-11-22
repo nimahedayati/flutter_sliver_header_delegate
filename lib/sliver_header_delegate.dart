@@ -61,6 +61,13 @@ class FlexibleHeaderDelegate extends SliverPersistentHeaderDelegate {
         fit: StackFit.expand,
         children: [
           if (background != null) background!.transform(progress),
+          AppBar(
+            backgroundColor: Colors.transparent,
+            actions: actions,
+            leading: leading,
+            title: title,
+            elevation: 0,
+          ),
           Container(
             height: visibleMainHeight,
             padding: EdgeInsets.only(top: statusBarHeight),
@@ -73,13 +80,6 @@ class FlexibleHeaderDelegate extends SliverPersistentHeaderDelegate {
                   ...children!.map((item) => item.transform(progress)).toList(),
               ],
             ),
-          ),
-          AppBar(
-            backgroundColor: Colors.transparent,
-            actions: actions,
-            leading: leading,
-            title: title,
-            elevation: 0,
           ),
         ],
       ),
