@@ -43,8 +43,7 @@ class FlexibleHeaderDelegate extends SliverPersistentHeaderDelegate {
   final FlexibleBuilder? builder;
 
   final double statusBarHeight;
-
-  @override
+ @override
   Widget build(
     BuildContext context,
     double shrinkOffset,
@@ -56,28 +55,30 @@ class FlexibleHeaderDelegate extends SliverPersistentHeaderDelegate {
     final visibleMainHeight = max(maxExtent - shrinkOffset, minExtent);
 
     return Material(
+      shadowColor: Colors.black.withOpacity(0.2),
       elevation: progress < 1 ? expandedElevation : collapsedElevation,
       child: Stack(
         fit: StackFit.expand,
         children: [
           if (background != null) background!.transform(progress),
           AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: backgroundColor ?? Theme.of(context).appBarTheme.color,
             actions: actions,
             leading: leading,
             title: title,
             elevation: 0,
+            shadowColor: Colors.transparent,
           ),
           Container(
             height: visibleMainHeight,
             padding: EdgeInsets.only(top: statusBarHeight),
-            color: backgroundColor ?? Theme.of(context).appBarTheme.color,
+            color: Colors.transparent
             child: Stack(
               fit: StackFit.expand,
               children: [
                 if (builder != null) builder!(context, progress),
-                if (children != null)
-                  ...children!.map((item) => item.transform(progress)).toList(),
+                if (children != null) ...children!.map((item) => item.transform(progress)).toList(),
+                TextButton(onPressed: () {}, child: Text("gsdg"))
               ],
             ),
           ),
@@ -85,7 +86,7 @@ class FlexibleHeaderDelegate extends SliverPersistentHeaderDelegate {
       ),
     );
   }
-
+  
   @override
   double get maxExtent => expandedHeight + statusBarHeight;
 
