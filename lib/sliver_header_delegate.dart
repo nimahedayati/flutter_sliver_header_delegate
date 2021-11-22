@@ -78,7 +78,6 @@ class FlexibleHeaderDelegate extends SliverPersistentHeaderDelegate {
               children: [
                 if (builder != null) builder!(context, progress),
                 if (children != null) ...children!.map((item) => item.transform(progress)).toList(),
-                TextButton(onPressed: () {}, child: Text("gsdg"))
               ],
             ),
           ),
