@@ -43,7 +43,7 @@ class FlexibleHeaderDelegate extends SliverPersistentHeaderDelegate {
   final FlexibleBuilder? builder;
 
   final double statusBarHeight;
- @override
+  @override
   Widget build(
     BuildContext context,
     double shrinkOffset,
@@ -62,7 +62,7 @@ class FlexibleHeaderDelegate extends SliverPersistentHeaderDelegate {
         children: [
           if (background != null) background!.transform(progress),
           AppBar(
-            backgroundColor: backgroundColor ?? Theme.of(context).appBarTheme.color,
+            backgroundColor: backgroundColor ?? Theme.of(context).appBarTheme.backgroundColor,
             actions: actions,
             leading: leading,
             title: title,
@@ -85,7 +85,7 @@ class FlexibleHeaderDelegate extends SliverPersistentHeaderDelegate {
       ),
     );
   }
-  
+
   @override
   double get maxExtent => expandedHeight + statusBarHeight;
 
@@ -93,8 +93,7 @@ class FlexibleHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get minExtent => collapsedHeight + statusBarHeight;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      true;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => true;
 }
 
 // TODO MutableBackground
@@ -150,12 +149,9 @@ class FlexibleHeaderItem extends Widget {
     this.collapsedMargin,
     this.options = const [],
     Key? key,
-  })  : assert(alignment == null ||
-            (expandedAlignment == null && collapsedAlignment == null)),
-        assert(padding == null ||
-            (expandedPadding == null && collapsedPadding == null)),
-        assert(margin == null ||
-            (expandedMargin == null && collapsedMargin == null)),
+  })  : assert(alignment == null || (expandedAlignment == null && collapsedAlignment == null)),
+        assert(padding == null || (expandedPadding == null && collapsedPadding == null)),
+        assert(margin == null || (expandedMargin == null && collapsedMargin == null)),
         super(key: key);
 
   final Alignment? alignment;
@@ -175,8 +171,7 @@ class FlexibleHeaderItem extends Widget {
   final Widget? child;
 
   @override
-  Element createElement() =>
-      throw Exception('Unable to wrap $this with other widgets');
+  Element createElement() => throw Exception('Unable to wrap $this with other widgets');
 }
 
 // TODO FlexibleTextItem
